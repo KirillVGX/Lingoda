@@ -558,6 +558,18 @@
     clip-path: inset(0px 0px 50px 0px);
 }
 
+@media (max-width: 1500px) {
+    .spiral {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+    }
+}
+
 @media (max-width: 1000px) {
     .grid-section-fiveth-element {
         justify-content: flex-start;
@@ -605,16 +617,7 @@
         gap: 20vw;
     }
 
-    .tv-image-wrapper {
-        clip: rect(0 0 0 0);
-        clip-path: inset(50%);
-        height: 1px;
-        overflow: hidden;
-        position: absolute;
-        white-space: nowrap;
-        width: 1px;
-    }
-
+    .tv-image-wrapper,
     .tv-frame {
         clip: rect(0 0 0 0);
         clip-path: inset(50%);
@@ -648,7 +651,7 @@
     }
 
     .grid-section-fourth-element .girl-with-book {
-        transform: scale(0.35) translateX(26vw) translateY(-115vw);
+        transform: scale(0.35) translateX(26vw) translateY(-120vw);
     }
 
     /* first grid */
@@ -781,6 +784,45 @@
         font-size: 0.6vw;
         line-height: 145%;
     }
+
+    .section-title {
+        font-size: 3vw;
+    }
+
+    .section-subtitle {
+        font-size: 0.6vw;
+    }
+}
+
+@media (max-width: 600px) {
+    .grid-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 19vw;
+    }
+
+    .grid-section-first-element,
+    .grid-section-second-element,
+    .grid-section-third-element,
+    .grid-section-fourth-element {
+        transform: scale(2);
+    }
+
+    .grid-section-first-element {
+        margin-top: 12vw;
+    }
+
+    .grid-section-fiveth-element {
+        flex-direction: column;
+        height: fit-content;
+        transform: scale(2);
+        margin-top: 20vw;
+    }
+
+    .buisness-english {
+        margin-top: 24vw;
+    }
 }
 
 @media (max-width: 550px) {
@@ -794,5 +836,11 @@
     .description-sprint,
     .description-flex {
         margin: 0;
+    }
+}
+
+@media (max-width: 400px) {
+    .grid-section-fourth-element .girl-with-book {
+        transform: scale(0.35) translateX(26vw) translateY(-122vw);
     }
 }

@@ -1,22 +1,35 @@
-header {
-    display: flex;
-    justify-content: space-between;
+.full-line {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    border: none;
+    margin: 0;
+    margin-bottom: 4vw;
+}
+
+.footer-without-hr {
     align-items: center;
     padding: 0 clamp(3.5vw, 5vw, 60px) clamp(1.5vw, 3vw, 32px) clamp(3.5vw, 5vw, 60px);
 }
 
-.logo img {
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-footer img {
     height: clamp(30px, 4.13vw, 200px);
     width: auto;
 }
 
-.navigation {
+.navigation-footer {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.navigation a {
+.navigation-footer a {
     font-family: NeueMachina;
     color: white;
     margin: 0 1vw;
@@ -26,19 +39,19 @@ header {
     text-wrap: nowrap;
 }
 
-.phone-number {
+.phone-number-footer {
     font-family: NeueMachina;
+    color: hsla(77, 99%, 58%, 1);
     font-size: 1.15vw;
     text-wrap: nowrap;
-    color: white;
     display: flex;
     gap: 1vw;
     justify-content: center;
     align-items: center;
 }
 
-.phone-number-icon {
-    background-color: white;
+.phone-number-icon-footer {
+    background-color: hsla(77, 99%, 58%, 1);
     width: 2.3vw;
     height: 2.3vw;
     border-radius: 50%;
@@ -49,37 +62,60 @@ header {
     margin-left: 0.7vw;
 }
 
-.phone-number-icon img {
+.phone-number-icon-footer img {
     height: 1.15vw;
     width: 1.15vw;
 }
 
-@media (max-width: 1000px) {
-    header {
-        flex-wrap: wrap;
-        justify-content: space-around;
-        padding: 0 5vw 0vw 5vw;
+.description-footer {
+    font: var(--font-small);
+    color: hsla(0, 0%, 84%, 1);
+    text-align: center;
+    margin-block: 1vw;
+}
 
+.padding {
+    padding-top: 2vw;
+}
+
+@media (max-width: 900px) {
+    footer {
+        margin-top: 56vw;
     }
 }
 
 @media (max-width: 830px) {
-    header {
+    .footer-top {
         flex-wrap: wrap;
         justify-content: space-around;
-        padding: 0 3.12vw;
+        padding: clamp(20px, 3.12vw, 90px);
     }
 }
 
 @media (max-width: 633px) {
-    header {
+    .footer-top {
         gap: 10px;
         justify-content: center;
         flex-direction: column;
     }
 
-    header .navigation {
+    .logo-footer{
+        margin-inline: auto;
+    }
+
+    .navigation-footer {
         order: 3;
         flex-direction: column;
+        font-size: 7px;
+    }
+}
+
+@media (max-width: 550px) {
+    .description-footer {
+        font-size: 1vw;
+    }
+
+    footer {
+        margin-top: 77vw;
     }
 }

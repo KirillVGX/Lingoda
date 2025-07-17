@@ -122,16 +122,11 @@
     z-index: 8;
 }
 
-.play-button::after {
-    content: '';
-    position: absolute;
-    top: 30%;
-    left: 38%;
-    width: 0;
-    height: 0;
-    border-top: 0.7vw solid transparent;
-    border-bottom: 0.7vw solid transparent;
-    border-left: 1.2vw solid black;
+.play-button img {
+    width: 1.6vw;
+    height: 2vw;
+    min-width: 10.5px;
+    min-height: 13.1px;
 }
 
 .white {
@@ -244,18 +239,19 @@
         align-items: center;
     }
 
-    .Max {
-        grid-column: 1;
-        grid-row: 2;
+    .video-container {
+        display: flex;
+        flex-direction: column;
+        padding-right: 14%;
     }
 
-    .Veronika {
-        grid-column: 1;
-        grid-row: 3;
-    }
-
-    .George {
-        grid-column: 1;
-        grid-row: 4;
+    .checkbox {
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        height: 1px;
+        overflow: hidden;
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
     }
 }

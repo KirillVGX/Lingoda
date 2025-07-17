@@ -3,37 +3,84 @@ const components = [
   { html: 'main-content', css: 'main-content' },
   { html: 'second-screen', css: 'second' },
   { html: 'student-success', css: 'students-success' },
-  { html: 'white-section', css: 'white' }
+  { html: 'white-section', css: 'white' },
+  { html: 'questions', css: 'questions' },
+  { html: 'footer', css: 'footer' }
 ];
 
-const root = document.getElementById('root');
+document.addEventListener('DOMContentLoaded', initCarousel);
 
-function resetTransforms() {
+function initCarouselMain() {
+  const container = document.getElementById('sliderContainer');
   const track = document.getElementById('sliderTrack');
-  if (!track) return;
+  const button = document.getElementById('nextBtnMain');
 
-  const cards = track.querySelectorAll('.card');
-  cards.forEach(card => {
-    card.style.transform = '';
-    card.style.zIndex = '';
-    card.style.filter = '';
+  if (!container || !track || !button) return;
+
+  function applyTransforms() {
+    const cards = Array.from(track.children);
+
+    cards.forEach((card, i) => {
+      card.style.transition = 'transform .4s ease, filter .4s ease';
+      card.style.zIndex = 3 - i;
+      card.style.filter = 'brightness(0.2)';
+      card.style.transform = 'scale(.8)';
+
+      if (i === 0) {
+        card.style.transform = 'scale(1.4)';
+        card.style.filter = 'brightness(1)';
+      }
+      if (i === 1) {
+        card.style.transform = 'scale(1.4) translateX(1vw)';
+        card.style.filter = 'brightness(.5)';
+      }
+      if (i === 2) {
+        card.style.transform = 'scale(1.4) translateX(2vw)';
+        card.style.filter = 'brightness(.4)';
+      }
+    });
+  }
+
+  function placeButton() {
+    const middle = track.children[1];
+    if (!middle) return;
+
+    const midRect = middle.getBoundingClientRect();
+    const wrapRect = container.getBoundingClientRect();
+
+    const scale = window.innerWidth <= 633 ? 2 : 1;
+
+    const x = (midRect.right - wrapRect.left) / scale - 22.5;
+    const y = (midRect.top - wrapRect.top + midRect.height / 2) / scale;
+
+    button.style.left = `${x}px`;
+    button.style.top = `${y}px`;
+  }
+
+  function slideNext() {
+    track.appendChild(track.firstElementChild);
+    applyTransforms();
+    requestAnimationFrame(placeButton);
+  }
+
+  button.addEventListener('click', slideNext);
+  window.addEventListener('resize', () => requestAnimationFrame(placeButton));
+
+  applyTransforms();
+  requestAnimationFrame(placeButton);
+
+  Array.from(container.querySelectorAll('.card img')).forEach(img => {
+    img.addEventListener('load', () => {
+      requestAnimationFrame(placeButton);
+    });
   });
 
-  if (cards[0]) {
-    cards[0].style.transform = 'scale(1.4)';
-    cards[0].style.zIndex = '3';
-  }
-  if (cards[1]) {
-    cards[1].style.transform = 'scale(1.32) translateX(clamp(-40px, -2.08vw, -70px))';
-    cards[1].style.zIndex = '2';
-    cards[1].style.filter = 'brightness(0.5)';
-  }
-  if (cards[2]) {
-    cards[2].style.transform = 'scale(1.28) translateX(clamp(-96px, -4.16vw, -120px))';
-    cards[2].style.zIndex = '1';
-    cards[2].style.filter = 'brightness(0.4)';
-  }
+  setTimeout(() => {
+    requestAnimationFrame(placeButton);
+  }, 300);
 }
+
+document.addEventListener('DOMContentLoaded', initCarousel);
 
 function initCarousel() {
   const track = document.getElementById('sliderTrackSecond');
@@ -48,15 +95,18 @@ function initCarousel() {
 
   function updatePositions() {
     cards.forEach((card, index) => {
+      card.style.transition = 'transform 0.4s ease';
       card.style.transform = `translateX(${index * offsetX}px) translateY(${index * offsetY}px)`;
       card.style.zIndex = cards.length - index;
     });
 
-    requestAnimationFrame(() => updateButtonPosition());
+    requestAnimationFrame(updateButtonPosition);
   }
 
   function updateButtonPosition() {
     const topCard = cards[0];
+    if (!topCard) return;
+
     const cardRect = topCard.getBoundingClientRect();
     const wrapperRect = wrapper.getBoundingClientRect();
 
@@ -77,8 +127,38 @@ function initCarousel() {
   button.addEventListener('click', moveToNext);
   window.addEventListener('resize', () => requestAnimationFrame(updateButtonPosition));
 
-  requestAnimationFrame(() => updatePositions());
+  Array.from(track.querySelectorAll('img')).forEach(img => {
+    img.addEventListener('load', () => {
+      requestAnimationFrame(updateButtonPosition);
+    });
+  });
+
+  setTimeout(() => {
+    requestAnimationFrame(updateButtonPosition);
+  }, 300);
+
+  requestAnimationFrame(updatePositions);
 }
+
+function initFAQToggle() {
+  const allItems = document.querySelectorAll('.faq-item');
+
+  allItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+
+    question.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+
+      allItems.forEach(i => i.classList.remove('active'));
+
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+}
+
+const root = document.getElementById('root');
 
 async function loadComponentsSequentially() {
   for (const { html, css } of components) {
@@ -95,8 +175,16 @@ async function loadComponentsSequentially() {
       link.href = `css/${css}.css`;
       document.head.appendChild(link);
 
+      if (html === 'main-content') {
+        initCarouselMain();
+      }
+
       if (html === 'second-screen') {
         initCarousel();
+      }
+
+      if (html === 'questions') {
+        initFAQToggle();
       }
 
     } catch (err) {
