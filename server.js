@@ -5,7 +5,8 @@ const http = require("http");
 const fs = require("fs");
 const path = require("path");
 
-const PORT = 3000;
+// ВАЖНО: Render даёт PORT через переменную окружения
+const PORT = process.env.PORT || 3000;
 
 http.createServer((req, res) => {
   let filePath = "." + req.url;
@@ -33,6 +34,7 @@ http.createServer((req, res) => {
       res.end(content, "utf-8");
     }
   });
-}).listen(PORT, '0.0.0.0',  () => {
+
+}).listen(PORT, '0.0.0.0', () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 header {
     display: flex;
     justify-content: space-between;
@@ -82,4 +83,90 @@ header {
         order: 3;
         flex-direction: column;
     }
+=======
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 clamp(3.5vw, 5vw, 60px) clamp(1.5vw, 3vw, 32px) clamp(3.5vw, 5vw, 60px);
+}
+
+.logo img {
+    height: clamp(30px, 4.13vw, 200px);
+    width: auto;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation a {
+    font-family: NeueMachina;
+    color: white;
+    margin: 0 1vw;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: clamp(10px, 1.2vw, 80px);
+    text-wrap: nowrap;
+}
+
+.phone-number {
+    font-family: NeueMachina;
+    font-size: 1.15vw;
+    text-wrap: nowrap;
+    color: white;
+    display: flex;
+    gap: 1vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone-number-icon {
+    background-color: white;
+    width: 2.3vw;
+    height: 2.3vw;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1vw;
+    margin-left: 0.7vw;
+}
+
+.phone-number-icon img {
+    height: 1.15vw;
+    width: 1.15vw;
+}
+
+@media (max-width: 1000px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 0 5vw 0vw 5vw;
+
+    }
+}
+
+@media (max-width: 830px) {
+    header {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 0 3.12vw;
+    }
+}
+
+@media (max-width: 633px) {
+    header {
+        gap: 10px;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    header .navigation {
+        order: 3;
+        flex-direction: column;
+    }
+>>>>>>> b609e52 (Initial commit)
 }

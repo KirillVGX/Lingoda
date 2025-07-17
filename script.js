@@ -3,9 +3,9 @@ const components = [
   { html: 'main-content', css: 'main-content' },
   { html: 'second-screen', css: 'second' },
   { html: 'student-success', css: 'students-success' },
-  { html: 'white-section', css: 'white' },
-  { html: 'questions', css: 'questions' },
-  { html: 'footer', css: 'footer' }
+  // { html: 'white-section', css: 'white' },
+  // { html: 'questions', css: 'questions' },
+  // { html: 'footer', css: 'footer' }
 ];
 
 document.addEventListener('DOMContentLoaded', initCarousel);

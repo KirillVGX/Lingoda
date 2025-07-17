@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .full-line {
     width: 100%;
     height: 1px;
@@ -118,4 +119,126 @@
     footer {
         margin-top: 77vw;
     }
+=======
+.full-line {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    border: none;
+    margin: 0;
+    margin-bottom: 4vw;
+}
+
+.footer-without-hr {
+    align-items: center;
+    padding: 0 clamp(3.5vw, 5vw, 60px) clamp(1.5vw, 3vw, 32px) clamp(3.5vw, 5vw, 60px);
+}
+
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-footer img {
+    height: clamp(30px, 4.13vw, 200px);
+    width: auto;
+}
+
+.navigation-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation-footer a {
+    font-family: NeueMachina;
+    color: white;
+    margin: 0 1vw;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: clamp(10px, 1.2vw, 80px);
+    text-wrap: nowrap;
+}
+
+.phone-number-footer {
+    font-family: NeueMachina;
+    color: hsla(77, 99%, 58%, 1);
+    font-size: 1.15vw;
+    text-wrap: nowrap;
+    display: flex;
+    gap: 1vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.phone-number-icon-footer {
+    background-color: hsla(77, 99%, 58%, 1);
+    width: 2.3vw;
+    height: 2.3vw;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1vw;
+    margin-left: 0.7vw;
+}
+
+.phone-number-icon-footer img {
+    height: 1.15vw;
+    width: 1.15vw;
+}
+
+.description-footer {
+    font: var(--font-small);
+    color: hsla(0, 0%, 84%, 1);
+    text-align: center;
+    margin-block: 1vw;
+}
+
+.padding {
+    padding-top: 2vw;
+}
+
+@media (max-width: 900px) {
+    footer {
+        margin-top: 56vw;
+    }
+}
+
+@media (max-width: 830px) {
+    .footer-top {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: clamp(20px, 3.12vw, 90px);
+    }
+}
+
+@media (max-width: 633px) {
+    .footer-top {
+        gap: 10px;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .logo-footer{
+        margin-inline: auto;
+    }
+
+    .navigation-footer {
+        order: 3;
+        flex-direction: column;
+        font-size: 7px;
+    }
+}
+
+@media (max-width: 550px) {
+    .description-footer {
+        font-size: 1vw;
+    }
+
+    footer {
+        margin-top: 77vw;
+    }
+>>>>>>> b609e52 (Initial commit)
 }
