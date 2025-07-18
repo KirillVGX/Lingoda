@@ -1,4 +1,7 @@
-<<<<<<< HEAD
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     background: black;
@@ -20,7 +23,7 @@ body {
 
 :root {
     --main-font: 700 clamp(20px, 4.16vw, 100px)/95% 'NeueMachina';
-    --average-font: 500 1.35vw/0% Montserrat;
+    --average-font: 500 1.2vw/0% Montserrat;
     --font-small: 400 clamp(8px, 0.72vw, 70px)/185% 'Montserrat';
     --border-radius: 52.8px;
     --lime-color: #C2FE2A;
@@ -31,38 +34,4 @@ body {
     --button-size: clamp(40px, 4vw, 60px);
     --font-base: clamp(12px, 1vw, 16px);
     --font-title: clamp(18px, 2vw, 24px);
-=======
-body {
-    margin: 0;
-    background: black;
-}
-
-@font-face {
-    font-family: 'Montserrat';
-    src: url('./fonts/Montserrat-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'NeueMachina';
-    src: url("./fonts/PPNeueMachina-InktrapRegular.otf") format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-:root {
-    --main-font: 700 clamp(20px, 4.16vw, 100px)/95% 'NeueMachina';
-    --average-font: 500 1.35vw/0% Montserrat;
-    --font-small: 400 clamp(8px, 0.72vw, 70px)/185% 'Montserrat';
-    --border-radius: 52.8px;
-    --lime-color: #C2FE2A;
-    --container-padding: clamp(16px, 3vw, 40px);
-    --gap-size: clamp(12px, 2vw, 24px);
-    --border-radius-2: 46.8px;
-    --video-width: clamp(200px, 25vw, 297px);
-    --button-size: clamp(40px, 4vw, 60px);
-    --font-base: clamp(12px, 1vw, 16px);
-    --font-title: clamp(18px, 2vw, 24px);
->>>>>>> b609e52 (Initial commit)
 }

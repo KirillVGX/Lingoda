@@ -3,9 +3,9 @@ const components = [
   { html: 'main-content', css: 'main-content' },
   { html: 'second-screen', css: 'second' },
   { html: 'student-success', css: 'students-success' },
-  // { html: 'white-section', css: 'white' },
-  // { html: 'questions', css: 'questions' },
-  // { html: 'footer', css: 'footer' }
+  { html: 'white-section', css: 'white' },
+  { html: 'questions', css: 'questions' },
+  { html: 'footer', css: 'footer' }
 ];
 
 document.addEventListener('DOMContentLoaded', initCarousel);
@@ -140,6 +140,65 @@ function initCarousel() {
   requestAnimationFrame(updatePositions);
 }
 
+document.addEventListener("DOMContentLoaded", initVideoSlider);
+
+function initVideoSlider() {
+  const track = document.getElementById("sliderTrack-students");
+  const originalOrder = Array.from(track.children);
+  const leftBtn = document.getElementById("leftBtn-students");
+  const centerBtn = document.getElementById("centerBtn-students");
+  const rightBtn = document.getElementById("rightBtn-students");
+
+  function temporarilyWhite(button) {
+    button.checked = true;
+    setTimeout(() => button.checked = false, 300);
+  }
+
+  function fadeSlide(direction) {
+    const allSlides = Array.from(track.children);
+
+    allSlides.forEach(el => {
+      el.classList.remove("fade-in");
+      el.classList.add("fade-out");
+    });
+
+    setTimeout(() => {
+      if (direction === "left") {
+        const first = track.firstElementChild;
+        track.appendChild(first);
+      } else if (direction === "right") {
+        const last = track.lastElementChild;
+        track.insertBefore(last, track.firstElementChild);
+      }
+
+      allSlides.forEach(el => el.classList.remove("fade-out"));
+      requestAnimationFrame(() => {
+        allSlides.forEach(el => el.classList.add("fade-in"));
+      });
+    }, 400); // должно совпадать с .fade-out
+  }
+
+  leftBtn.addEventListener("click", () => {
+    temporarilyWhite(leftBtn);
+    fadeSlide("left");
+  });
+
+  rightBtn.addEventListener("click", () => {
+    temporarilyWhite(rightBtn);
+    fadeSlide("right");
+  });
+
+  centerBtn.addEventListener("click", () => {
+    temporarilyWhite(centerBtn);
+    track.innerHTML = '';
+    originalOrder.forEach(el => {
+      el.classList.remove("fade-out");
+      el.classList.add("fade-in");
+      track.appendChild(el);
+    });
+  });
+}
+
 function initFAQToggle() {
   const allItems = document.querySelectorAll('.faq-item');
 
@@ -181,6 +240,10 @@ async function loadComponentsSequentially() {
 
       if (html === 'second-screen') {
         initCarousel();
+      }
+
+      if (html === 'student-success') {
+        initVideoSlider();
       }
 
       if (html === 'questions') {

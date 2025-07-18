@@ -37,6 +37,10 @@
 }
 
 .video-container {
+    position: relative;
+}
+
+.slider-track-students {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -49,6 +53,8 @@
     font-family: Montserrat, Arial, sans-serif;
     padding: 3vw;
     box-sizing: border-box;
+    transition: transform 0.3s ease;
+    will-change: transform;
 }
 
 .video-content {
@@ -145,7 +151,7 @@
     align-self: center;
 }
 
-.radio {
+.radio-students {
     appearance: none;
     -webkit-appearance: none;
     width: 20px;
@@ -157,7 +163,7 @@
     transition: background-color 0.2s;
 }
 
-.radio:checked {
+.radio-students:checked {
     background-color: white;
 }
 
@@ -168,6 +174,32 @@
 .dimmed {
     opacity: 0.4;
     transition: opacity 0.3s ease;
+}
+
+.slider-track-students.animating {
+    transition: transform 0.5s ease-in-out;
+}
+
+.slider-track-students.no-transition {
+    transition: none !important;
+}
+
+.video-content {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.video-content.fade-out {
+    opacity: 0;
+    transform: scale(0.9);
+    pointer-events: none;
+}
+
+.video-content.fade-in {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
 }
 
 @media (max-width: 1400px) {
@@ -218,6 +250,7 @@
 }
 
 @media (max-width: 1080px) {
+
     .Savannah,
     .George {
         left: 6.94vw;
