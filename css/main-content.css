@@ -59,6 +59,7 @@
     height: 3vw;
     margin-top: 0.26vw;
     text-wrap: nowrap;
+    text-decoration: none;
 }
 
 .started-cta-button:hover {
@@ -90,8 +91,8 @@
 }
 
 .started-cta-icon-svg {
-    width: 0.6vw;
-    height: 0.6vw;
+    width: 0.8vw;
+    height: 0.8vw;
 }
 
 .downStarting {
@@ -292,7 +293,6 @@
     font-size: 1.1vw;
     line-height: 130%;
     letter-spacing: 0%;
-
 }
 
 .right-card-description {

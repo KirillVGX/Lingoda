@@ -46,6 +46,7 @@
     width: 10.2vw;
     height: 3vw;
     margin-top: 0.26vw;
+    text-decoration: none;
 }
 
 .started-cta-button-questions:hover {
@@ -78,8 +79,8 @@
 }
 
 .started-cta-icon-questions img {
-    height: 1.2vw;
-    width: 1.2vw;
+    height: 0.8vw;
+    width: 0.8vw;
 }
 
 .downStarting-questions {

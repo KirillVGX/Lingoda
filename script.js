@@ -140,11 +140,36 @@ function initCarousel() {
   requestAnimationFrame(updatePositions);
 }
 
+document.addEventListener('DOMContentLoaded', initWrapper);
+
+function initWrapper() {
+  const track = document.getElementById('sliderWrapper');
+  const nextBtn = document.getElementById('slideNext');
+  const prevBtn = document.getElementById('slidePrev');
+  const wrapper = document.getElementById('galleryWrapper');
+
+  if (!track || !nextBtn || !prevBtn || !wrapper) return;
+
+  nextBtn.addEventListener('click', () => {
+    const firstCard = track.firstElementChild;
+    if (firstCard) {
+      track.appendChild(firstCard);
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    const lastCard = track.lastElementChild;
+    if (lastCard) {
+      track.insertBefore(lastCard, track.firstElementChild);
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", initVideoSlider);
 
 function initVideoSlider() {
-  const track = document.getElementById("sliderTrack-students");
-  const originalOrder = Array.from(track.children);
+  const tracker = document.getElementById("sliderTrack-students");
+  const originalOrder = Array.from(tracker.children);
   const leftBtn = document.getElementById("leftBtn-students");
   const centerBtn = document.getElementById("centerBtn-students");
   const rightBtn = document.getElementById("rightBtn-students");
@@ -155,7 +180,7 @@ function initVideoSlider() {
   }
 
   function fadeSlide(direction) {
-    const allSlides = Array.from(track.children);
+    const allSlides = Array.from(tracker.children);
 
     allSlides.forEach(el => {
       el.classList.remove("fade-in");
@@ -164,11 +189,11 @@ function initVideoSlider() {
 
     setTimeout(() => {
       if (direction === "left") {
-        const first = track.firstElementChild;
-        track.appendChild(first);
+        const first = tracker.firstElementChild;
+        tracker.appendChild(first);
       } else if (direction === "right") {
-        const last = track.lastElementChild;
-        track.insertBefore(last, track.firstElementChild);
+        const last = tracker.lastElementChild;
+        tracker.insertBefore(last, tracker.firstElementChild);
       }
 
       allSlides.forEach(el => el.classList.remove("fade-out"));
@@ -190,11 +215,67 @@ function initVideoSlider() {
 
   centerBtn.addEventListener("click", () => {
     temporarilyWhite(centerBtn);
-    track.innerHTML = '';
+    tracker.innerHTML = '';
     originalOrder.forEach(el => {
       el.classList.remove("fade-out");
       el.classList.add("fade-in");
-      track.appendChild(el);
+      tracker.appendChild(el);
+    });
+  });
+}
+
+document.addEventListener("DOMContentLoaded", initVideo);
+
+function initVideo() {
+  const allVideoCards = document.querySelectorAll('.video-content');
+
+  allVideoCards.forEach(videoContainer => {
+    const previewImg = videoContainer.querySelector('.preview-img');
+    const video = videoContainer.querySelector('.preview-video');
+    const playBtn = videoContainer.querySelector('.play-button');
+    const playIcon = videoContainer.querySelector('.play-icon');
+    const pauseIcon = videoContainer.querySelector('.pause-icon');
+
+    playBtn.addEventListener('click', () => {
+      if (video.paused) {
+        allVideoCards.forEach(vc => {
+          const otherVideo = vc.querySelector('.preview-video');
+          const otherImg = vc.querySelector('.preview-img');
+          const otherPlayIcon = vc.querySelector('.play-icon');
+          const otherPauseIcon = vc.querySelector('.pause-icon');
+
+          otherVideo.pause();
+          otherVideo.currentTime = 0;
+          otherVideo.style.display = 'none';
+          otherImg.style.display = 'block';
+          otherPlayIcon.style.display = 'block';
+          otherPauseIcon.style.display = 'none';
+        });
+
+        previewImg.style.display = 'none';
+        video.style.display = 'block';
+        video.currentTime = 0;
+        video.play();
+
+        playIcon.style.display = 'none';
+        pauseIcon.style.display = 'block';
+
+      } else {
+        video.pause();
+        video.currentTime = 0;
+        video.style.display = 'none';
+        previewImg.style.display = 'block';
+
+        playIcon.style.display = 'block';
+        pauseIcon.style.display = 'none';
+      }
+    });
+
+    video.addEventListener('ended', () => {
+      video.style.display = 'none';
+      previewImg.style.display = 'block';
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
     });
   });
 }
@@ -240,10 +321,12 @@ async function loadComponentsSequentially() {
 
       if (html === 'second-screen') {
         initCarousel();
+        initWrapper();
       }
 
       if (html === 'student-success') {
         initVideoSlider();
+        initVideo();
       }
 
       if (html === 'questions') {

@@ -263,6 +263,7 @@
     width: 14.4vw;
     position: relative;
     height: 4.4vw;
+    text-decoration: none;
 }
 
 .fancy-button:hover {
@@ -346,6 +347,7 @@
     position: relative;
     height: 4.4vw;
     margin-top: 1.8vw;
+    text-decoration: none;
 }
 
 .levels-cta-button:hover {
